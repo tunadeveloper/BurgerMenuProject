@@ -1,0 +1,35 @@
+﻿@model BurgerMenuProject.Entities.Admin
+@{
+    ViewBag.Title = "MyProfileList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Ürün Girişi</h4>
+            <form method="post">
+                <label>Adınız</label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                <br />
+
+                <label>Soyadınız</label>
+                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                <br />
+
+                <label>E-Posta Adresi</label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                <br />
+
+                <label>Kullanıcı ADınızx</label>
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+                <br />
+
+                <label>Şifreniz</label>
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                <br />
+                <button class="btn btn-info">Profili Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
