@@ -1,0 +1,41 @@
+﻿@model List<BurgerMenuProject.Entities.Message>
+@{
+    int count = 0;
+}
+
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Giden Mesajlar Sayfası</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Alıcı</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>Mesajı Aç</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.ReceiverEmail</td>
+                                <td>@item.Title</td>
+                                <td>@item.SendDate.ToShortDateString()</td>
+                                <td><a href="#" class="btn btn-primary">Mesajı Aç</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/Admin/Message/NewMessage/" class="btn btn-info">Yeni Mesaj Gönder</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div id="app" class="container">
+    <div class="card-wrapper">
+        <span onclick="window.open('https://solcode.net', '_blank')" class="logo-mark">
+            <img src="https://solcode.net/public/img/solcode_letter_small.svg" alt="Solcode logo">
+        </span>
+        <div class="card-details">
+            <p class="card-number">{{ formattedCardNumber }}</p>
+            <p class="card-name">{{ cardName || 'Cardholder Name' }}</p>
+            <p class="card-expiration">{{ cardExpiration || 'MM/YY' }}</p>
+            <p class="card-cvv">{{ cardCvv || 'CVV' }}</p>
+        </div>
+    </div>
+
+    <div class="inputs-wrapper">
+        <div class="input-pair">
+            <input v-model="cardNumber" input="reformatCardNumber" class="input-wide" type="text" placeholder="Card number">
+            <label>Card number</label>
+        </div>
+        <div class="input-pair input-pair-inline">
+            <input v-model="cardName" class="input-short" type="text" placeholder="Name">
+            <label>Name</label>
+        </div>
+        <div class="input-pair input-pair-inline float-right">
+            <input v-model="cardExpiration" class="input-short" type="text" placeholder="MM/YY">
+            <label>Expiration date</label>
+        </div>
+        <div class="input-pair input-pair-inline">
+            <input v-model="cardCvv" class="input-short" type="number" max="999" placeholder="CVV">
+            <label>CVV</label>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Aynı CSS kodlarını koruyoruz */
+    button:active, input:active, button:focus, input:focus {
+        outline: none;
+    }
+
+    .container {
+        position: absolute;
+        max-width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .card-wrapper {
+        width: 466px;
+        height: 266px;
+        background: #0B121B;
+        border-radius: 16px;
+        position: relative;
+        transition: 450ms ease;
+    }
+
+        .card-wrapper:hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+
+    .logo-mark {
+        position: absolute;
+        left: 36px;
+        top: 30px;
+        cursor: pointer;
+    }
+
+    .card-details {
+        padding: 30px 30px;
+        bottom: 0px;
+        left: 0px;
+        position: absolute;
+        width: calc(100% - 60px);
+    }
+
+        .card-details p {
+            font-family: Roboto, Arial;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 32px;
+            color: #FFFFFF;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+    .card-number {
+        font-family: Roboto, Arial;
+        display: inline-block;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 32px !important;
+        line-height: 32px !important;
+        color: #FFFFFF;
+        width: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .card-expiration {
+        display: inline-block;
+        width: max-content;
+        margin-left: 14px;
+    }
+
+    .card-name {
+        width: max-content;
+        display: inline-block;
+    }
+
+    input {
+        background: #FFFFFF;
+        box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        padding: 14px 7px;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 20px;
+        border: none;
+    }
+
+    .input-wide {
+        width: 452px;
+    }
+
+    .input-short {
+        width: 212px;
+    }
+
+    .card-cvv {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    label {
+        font-family: Roboto;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 20px;
+        color: #B0B0B0;
+        transition: 350ms ease;
+        pointer-events: none;
+    }
+
+    .input-pair {
+        position: relative;
+        height: max-content;
+        width: max-content;
+        margin-top: 14px;
+    }
+
+    .inputs-wrapper {
+        margin-top: 40px;
+        width: 466px;
+    }
+
+    .input-pair-inline {
+        display: inline-block;
+    }
+
+    .float-right {
+        float: right;
+    }
+</style>
+
+<script>
+    // Vue.js yapılandırması
+    let app = new Vue({
+        el: '#app',
+        data: {
+            cardNumber: '',
+            cardName: '',
+            cardExpiration: '',
+            cardCvv: '',
+        },
+        computed: {
+            formattedCardNumber() {
+                if (this.cardNumber) {
+                    return this.cardNumber.match(/.{1,4}/g).join(' ');
+                }
+                return '#### #### #### ####';
+            }
+        },
+        methods: {
+            reformatCardNumber() {
+                this.cardNumber = this.cardNumber.replace(/\s+/g, '').replace(/[^0-9]/gi, '').slice(0, 16);
+            }
+        }
+    });
+</script>
