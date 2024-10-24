@@ -17,5 +17,9 @@ namespace BurgerMenuProject.Context
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Gallery> Gallerys { get; set; }  
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<UserMessage> UserMessages { get; set; }
+        public DbSet<SocialMedia> SocialMedia { get; set; }
     }
 }

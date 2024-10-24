@@ -12,13 +12,21 @@ namespace BurgerMenuProject.Controllers
     {
         // GET: Default
         BurgerMenuContext context = new BurgerMenuContext();
-        public ActionResult Index()
-            
+        public ActionResult Index()    
         {
-            return View();
+			return View();
         }
 
-        public PartialViewResult PartialHead()
+        [HttpPost]
+		public ActionResult Index(UserMessage userMessage)
+
+		{
+			context.UserMessages.Add(userMessage);
+			context.SaveChanges();
+			return RedirectToAction("Index");
+		}
+
+		public PartialViewResult PartialHead()
         {
             return PartialView();
         }
@@ -37,16 +45,19 @@ namespace BurgerMenuProject.Controllers
 
         public PartialViewResult PartialGallery()
         {
-            return PartialView();
-        }
-
-        public PartialViewResult PartialMenu()
-        {
-            var values = context.Products.ToList();
+            var values = context.Gallerys.ToList();
             return PartialView(values);
         }
 
-        public PartialViewResult PartialNavbar()
+		public PartialViewResult PartialMenu(int categoryId)
+		{
+			var values = context.Products.Where(x => x.CategoryId == categoryId).ToList();
+			return PartialView(values);
+		}
+
+
+
+		public PartialViewResult PartialNavbar()
         {
             var values = context.Abouts.ToList();
             return PartialView(values);
@@ -84,10 +95,21 @@ namespace BurgerMenuProject.Controllers
             return PartialView();
         }
 
-        public ActionResult CategoryProduct(int categoryId)
+        public PartialViewResult PartialContact()
         {
-            var products = context.Products.Where(x=>x.CategoryId == categoryId).ToList();
-            return View(products);
+            var values = context.Contacts.ToList();
+            return PartialView(values);
         }
-    }
-}
+
+        public PartialViewResult PartialMap() { 
+        ViewBag.mapurl = context.Contacts.Select(x=>x.MapUrl).FirstOrDefault();
+        return PartialView();
+        }
+ 
+        public PartialViewResult PartialContactHead()
+        {
+            ViewBag.description = context.Contacts.Select(x=> x.Description).FirstOrDefault();
+            return PartialView();
+        }
+		}
+	}

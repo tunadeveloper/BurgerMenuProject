@@ -4,7 +4,38 @@
     @foreach (var item in Model)
     {
         <li class="nav-item site-animate">
-            <a class="nav-link" id="pills-@item.CategoryName-tab" data-toggle="pill" href="@Url.Action("CategoryProducts", "Menu", new { categoryId = item.CategoryId })" role="tab" aria-controls="pills-@item.CategoryName" aria-selected="true">@item.CategoryName</a>
+            <!-- CategoryId'yi butonun data-category-id özelliğine ekliyoruz -->
+            <a class="nav-link" data-category-id="@item.CategoryId" href="#" role="tab" aria-selected="true">
+                @item.CategoryName
+            </a>
         </li>
     }
 </ul>
+
+<script>
+    $(document).ready(function() {
+        // Kategori butonlarına tıklama işlemini takip et
+        $('.nav-link').click(function(e) {
+            e.preventDefault();  // Sayfanın yeniden yüklenmesini engeller
+
+            var categoryId = $(this).data('category-id'); // Tıklanan butonun CategoryId'sini al
+
+            // Ajax ile PartialMenu action'ına CategoryId'yi gönder
+            $.ajax({
+                url: '@Url.Action("PartialMenu", "Default")',
+                type: 'GET',
+                data: { categoryId: categoryId },
+                success: function(result) {
+                    // Dönen sonucu menu-container div'ine ekle
+                    $('#menu-container').html(result);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error: " + error);
+                    console.log("Status: " + status);
+                    console.dir(xhr);
+                }
+            });
+        });
+    });
+</script>
+

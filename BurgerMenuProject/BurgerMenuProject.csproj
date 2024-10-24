@@ -145,11 +145,15 @@
     <Compile Include="Entities\About.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\DealOfTheDay.cs" />
+    <Compile Include="Entities\Gallery.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Reservation.cs" />
+    <Compile Include="Entities\SocialMedia.cs" />
     <Compile Include="Entities\Testimonial.cs" />
+    <Compile Include="Entities\UserMessage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +192,30 @@
     <Compile Include="Migrations\202410222032119_mig8.cs" />
     <Compile Include="Migrations\202410222032119_mig8.Designer.cs">
       <DependentUpon>202410222032119_mig8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241549001_mig9.cs" />
+    <Compile Include="Migrations\202410241549001_mig9.Designer.cs">
+      <DependentUpon>202410241549001_mig9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241606495_mig10.cs" />
+    <Compile Include="Migrations\202410241606495_mig10.Designer.cs">
+      <DependentUpon>202410241606495_mig10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241609529_mig11.cs" />
+    <Compile Include="Migrations\202410241609529_mig11.Designer.cs">
+      <DependentUpon>202410241609529_mig11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241622494_mig12.cs" />
+    <Compile Include="Migrations\202410241622494_mig12.Designer.cs">
+      <DependentUpon>202410241622494_mig12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241906116_mig13.cs" />
+    <Compile Include="Migrations\202410241906116_mig13.Designer.cs">
+      <DependentUpon>202410241906116_mig13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410242019421_mig14.cs" />
+    <Compile Include="Migrations\202410242019421_mig14.Designer.cs">
+      <DependentUpon>202410242019421_mig14.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1753,6 +1781,10 @@
     <Content Include="Views\Default\TodaysOffer.cshtml" />
     <Content Include="Views\Default\PartialCategory.cshtml" />
     <Content Include="Views\Default\PartialReservation.cshtml" />
+    <Content Include="Views\Default\PartialContact.cshtml" />
+    <Content Include="Views\Default\UserMessage.cshtml" />
+    <Content Include="Views\Default\PartialMap.cshtml" />
+    <Content Include="Views\Default\PartialContactHead.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1818,6 +1850,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410222032119_mig8.resx">
       <DependentUpon>202410222032119_mig8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241549001_mig9.resx">
+      <DependentUpon>202410241549001_mig9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241606495_mig10.resx">
+      <DependentUpon>202410241606495_mig10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241609529_mig11.resx">
+      <DependentUpon>202410241609529_mig11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241622494_mig12.resx">
+      <DependentUpon>202410241622494_mig12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241906116_mig13.resx">
+      <DependentUpon>202410241906116_mig13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410242019421_mig14.resx">
+      <DependentUpon>202410242019421_mig14.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
