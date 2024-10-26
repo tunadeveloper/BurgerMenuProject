@@ -1,6 +1,7 @@
 ﻿@model List<BurgerMenuProject.Entities.Message>
 @{
     int count = 0;
+    string[] colorClasses = { "destek-color", "tesekkur-color", "duyuru-color", "finans-color", "menu-color", "diger-color" };
 }
 
 <div class="col-lg-6 grid-margin stretch-card">
@@ -24,12 +25,18 @@
                         @foreach (var item in Model)
                         {
                             count++;
+                            string colorClass = item.Title == "Destek" ? colorClasses[0]
+            : item.Title == "Teşekkür" ? colorClasses[1]
+            : item.Title == "Duyuru" ? colorClasses[2]
+            : item.Title == "Finans" ? colorClasses[3]
+            : item.Title == "Menü" ? colorClasses[4]
+            : colorClasses[5];
                             <tr>
                                 <td>@count</td>
                                 <td>@item.ReceiverEmail</td>
-                                <td>@item.Title</td>
+                                <td class="@colorClass">@item.Title</td>
                                 <td>@item.SendDate.ToShortDateString()</td>
-                                <td><a href="#" class="btn btn-primary">Mesajı Aç</a></td>
+                                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Content')">Mesajı Aç</a></td>
                             </tr>
                         }
                     </tbody>

@@ -1,0 +1,20 @@
+﻿@model BurgerMenuProject.Entities.Gallery
+@{
+    ViewBag.Title = "CreateImage";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Ürün Girişi</h4>
+            <form method="post">
+                <label>Ürün Adı</label>
+                @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-info">Görseli Ekle</button>
+            </form>
+        </div>
+    </div>
+</div>

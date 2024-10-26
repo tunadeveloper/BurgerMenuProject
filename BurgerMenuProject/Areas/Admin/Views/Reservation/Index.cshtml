@@ -5,6 +5,94 @@
 
 }
 
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kategori Listesi</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>İsim Soyisim</th>
+                            <th>Telefon Numarası</th>
+                            <th>Kişi Sayısı</th>
+                            <th>Zaman</th>
+                            <th>Mesaj</th>
+                            <th>Rezervasyon Durumu</th>
+                            <th>Detaylar</th>
+                            <th>Reddet</th>
+                            <th>Beklet</th>
+                            <th>Onayla</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(item.Name + " " + @item.Surname)</td>
+                                <td>@item.Phone</td>
+                                <td>@item.PeopleCount</td>
+                                <td>@item.Time</td>
+                                <td>@(item.Message == null ? "Boş" : (item.Message.Length > 20 ? item.Message.Substring(0, 20) + "..." : item.Message))</td>
+                                <td style="color: @(item.ReservationStatus == "Reddedildi" ? "red" : item.ReservationStatus == "Bekliyor" ? "orange" : item.ReservationStatus == "Onaylandı" ? "limegreen" : "saddlebrown")">
+                                    @(item.ReservationStatus ?? "İşlem Bekliyor...")
+                                </td>
+                                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Message', '@item.Email')">Detaylar</a></td>
+                                <td><a href="@Url.Action("CancelReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-danger">Reddet</a></td>
+                                <td><a href="@Url.Action("HoldReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-warning">Beklet</a></td>
+                                <td><a href="@Url.Action("ConfirmedReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-success">Onayla</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--=================================================================================================-->
+<!-- Popup Start -->
+<!--=================================================================================================-->
+<div class="modal fade" id="reservationDetailsModal" tabindex="-1" role="dialog" aria-labelledby="reservationDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationDetailsLabel">Rezervasyon Detayları</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="message-content" id="reservationDetailContent"></div>
+                <div class="email-content" id="reservationEmailContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--=================================================================================================-->
+<!-- Script Start -->
+<!--=================================================================================================-->
+<script src="/regal/vendors/jquery/jquery.min.js"></script> 
+<script src="/regal/vendors/base/vendor.bundle.base.js"></script> 
+
+<script>
+    function showReservationDetails(message, email) {
+        document.getElementById('reservationDetailContent').innerText = message;
+        document.getElementById('reservationEmailContent').innerText = email;
+        $('#reservationDetailsModal').modal('show');
+    }
+</script>
+
+
+
+<!--=================================================================================================-->
+<!-- Style Start -->
+<!--=================================================================================================-->
 <style>
     .modal-body {
         padding: 20px;
@@ -12,103 +100,22 @@
     }
 
     .message-content {
-        font-size: 1.2em; /* Mesaj font boyutu */
-        margin-bottom: 10px; /* Mesajın altına biraz boşluk ekle */
-        font-weight: bold; /* Mesajı kalın yap */
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        font-weight: bold;
     }
 
     .email-content {
-        font-size: 0.8em; /* E-posta font boyutu */
-        color: #007bff; /* E-posta rengini mavi yap */
-        margin-top: 5px; /* E-posta için üstte biraz boşluk ekle */
+        font-size: 0.8em;
+        color: #007bff;
+        margin-top: 5px;
     }
 
     .modal-title {
-        color: #333; /* Modal başlığı rengi */
+        color: #333;
     }
 
     .modal-header {
-        border-bottom: 2px solid #007bff; /* Modal başlığı altında mavi bir çizgi */
+        border-bottom: 2px solid #007bff;
     }
 </style>
-</head>
-
-<body>
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kategori Listesi</h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>İsim Soyisim</th>
-                                <th>Telefon Numarası</th>
-                                <th>Kişi Sayısı</th>
-                                <th>Zaman</th>
-                                <th>Mesaj</th>
-                                <th>Rezervasyon Durumu</th>
-                                <th>Detaylar</th>
-                                <th>İptal Et</th>
-                                <th>Beklet</th>
-                                <th>Onayla</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@(item.Name + " " + @item.Surname)</td>
-                                    <td>@item.Phone</td>
-                                    <td>@item.PeopeCount</td>
-                                    <td>@item.Time</td>
-                                    <td>@(item.Message == null ? "Boş" : (item.Message.Length > 20 ? item.Message.Substring(0, 20) + "..." : item.Message))</td>
-                                    <td style="color: @(item.ReservationStatus == "İptal Edildi" ? "red" : item.ReservationStatus == "Bekliyor" ? "orange" : item.ReservationStatus == "Onaylandı" ? "limegreen" : "saddlebrown")">
-                                        @(item.ReservationStatus ?? "İşlem Bekliyor...")
-                                    </td>
-                                    <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Message', '@item.Email')">Detaylar</a></td>
-                                    <td><a href="@Url.Action("CancelReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-danger">İptal Et</a></td>
-                                    <td><a href="@Url.Action("HoldReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-warning">Beklet</a></td>
-                                    <td><a href="@Url.Action("ConfirmedReservation", "Reservation", new { id = item.ReservationId })" class="btn btn-success">Onayla</a></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Structure -->
-    <div class="modal fade" id="reservationDetailsModal" tabindex="-1" role="dialog" aria-labelledby="reservationDetailsLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reservationDetailsLabel">Rezervasyon Detayları</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="message-content" id="reservationDetailContent"></div>
-                    <div class="email-content" id="reservationEmailContent"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="/regal/vendors/jquery/jquery.min.js"></script> <!-- jQuery -->
-    <script src="/regal/vendors/base/vendor.bundle.base.js"></script> <!-- Bootstrap JS -->
-
-    <script>
-        function showReservationDetails(message, email) {
-            // Modal içindeki mesaj ve e-posta adresini ayarla
-            document.getElementById('reservationDetailContent').innerText = message;
-            document.getElementById('reservationEmailContent').innerText = email;
-            // Modali göster
-            $('#reservationDetailsModal').modal('show');
-        }
-    </script>

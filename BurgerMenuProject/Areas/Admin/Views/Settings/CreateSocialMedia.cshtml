@@ -1,0 +1,28 @@
+﻿@model BurgerMenuProject.Entities.SocialMedia
+@{
+    ViewBag.Title = "CreateSocialMedia";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Ürün Girişi</h4>
+            <form method="post">
+                <label>Ürün Adı</label>
+                @Html.TextBoxFor(x => x.SocialMedianame, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Fiyatı</label>
+                @Html.TextBoxFor(x => x.SocialMediaIcon, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Görsel URL</label>
+                @Html.TextBoxFor(x => x.SocialMediaUrl, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-info">Hesabı Ekle</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model List<BurgerMenuProject.Entities.Subscription>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Aboneler</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>E-Posta Adresi</th>
+                            <th>Abonelik Tarihi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td class="email">@item.EmailAddress</td>
+                                <td>@item.dateTime.ToString("dd.MM.yyyy")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button onclick="copyEmails()" class="btn btn-info">E-Postaları Kopyala</button>
+
+<script>
+    function copyEmails() {
+        const emails = Array.from(document.querySelectorAll('.email')).map(cell => cell.innerText);
+        const emailList = emails.join(', ');
+        navigator.clipboard.writeText(emailList).then(() => {
+            alert('E-posta adresleri panoya kopyalandı!');
+        }).catch(err => {
+            console.error('Kopyalama hatası:', err);
+        });
+    }
+</script>

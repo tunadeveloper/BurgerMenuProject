@@ -1,4 +1,5 @@
 ﻿@model BurgerMenuProject.Entities.Message
+
 @{
     ViewBag.Title = "NewMessage";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -13,8 +14,8 @@
                 <label>Alıcı Email Adresi</label>
                 @Html.TextBoxFor(x => x.ReceiverEmail, new { @class = "form-control" })
                 <br />
-                <label>Konu</label>
-                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                <label for="dropdown">Konu</label>
+                @Html.DropDownListFor(model => model.Title, (IEnumerable<SelectListItem>)ViewBag.Items, "Bir seçenek seçin", new { @class = "form-control" })
                 <br />
                 <label>Mesaj</label>
                 @Html.TextAreaFor(x => x.Content, 4, 0, new { @class = "form-control" })

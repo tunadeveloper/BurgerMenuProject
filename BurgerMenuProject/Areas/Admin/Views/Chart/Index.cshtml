@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+   
+    canvas {
+        max-width: 100%; /* Genişliği %100 yap */
+        height: 300px; /* Yüksekliği 300px yaparak aynı boyutları elde et */
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center">Rezervasyon ve Ürün Grafikleri</h2>
+
+    <div class="row">
+        <!-- İlk Çizgi Grafiği -->
+        <div class="col-md-6">
+            <canvas id="reservationChart" height="230"></canvas> <!-- Yüksekliği burada belirledik -->
+        </div>
+
+        <!-- İkinci Çizgi Grafiği -->
+        <div class="col-md-6">
+            <canvas id="productChart" height="230"></canvas> <!-- Yüksekliği burada belirledik -->
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Üçüncü Grafik (Mesajların Konularına Göre Sayısı) -->
+        <div class="col-md-6">
+            <canvas id="categoryChart" height="230"></canvas>
+        </div>
+
+        <!-- Dördüncü Grafik -->
+        <div class="col-md-6">
+            <canvas id="subscriptionChart" height="230"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Rezervasyon verisi
+        var reservationData = @Html.Raw(ViewBag.ReservationData);
+        var reservationLabels = reservationData.map(function (item) {
+            return item.Month + '/' + item.Year;
+        });
+        var reservationCounts = reservationData.map(function (item) {
+            return item.Count;
+        });
+
+        // Rezervasyon Grafiği
+        var ctxReservation = document.getElementById('reservationChart').getContext('2d');
+        new Chart(ctxReservation, {
+            type: 'line',
+            data: {
+                labels: reservationLabels,
+                datasets: [{
+                    label: 'Rezervasyon Sayısı',
+                    data: reservationCounts,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Ürün verisi
+        var productData = @Html.Raw(ViewBag.ProductData);
+        var productLabels = productData.map(function (item) {
+            return item.CategoryName;
+        });
+        var productCounts = productData.map(function (item) {
+            return item.Count;
+        });
+
+        // Ürün Grafiği
+        var ctxProduct = document.getElementById('productChart').getContext('2d');
+        new Chart(ctxProduct, {
+            type: 'line',
+            data: {
+                labels: productLabels,
+                datasets: [{
+                    label: 'Ürün Sayısı',
+                    data: productCounts,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Mesaj verisi
+        var messageData = @Html.Raw(ViewBag.MessageData);
+        var messageLabels = messageData.map(function (item) {
+            return item.Title;
+        });
+        var messageCounts = messageData.map(function (item) {
+            return item.Count;
+        });
+
+        // Mesaj Grafiği
+        var ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCategory, {
+            type: 'line',
+            data: {
+                labels: messageLabels,
+                datasets: [{
+                    label: 'Mesaj Konuları',
+                    data: messageCounts,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        // Abonelik verisi
+var subscriptionData = @Html.Raw(ViewBag.SubscriptionData);
+        var subscriptionLabels = subscriptionData.map(function (item) {
+            return item.Date.split("T")[0].slice(5); // 1. "T" karakterine göre böl, 2. ilk 5 karakteri çıkar (ay-gün)
+        });
+var subscriptionCounts = subscriptionData.map(function (item) {
+    return item.Count; // Günlük abonelik sayısı
+});
+
+// Abonelik Grafiği
+var ctxSubscription = document.getElementById('subscriptionChart').getContext('2d');
+new Chart(ctxSubscription, {
+    type: 'line',
+    data: {
+        labels: subscriptionLabels,
+        datasets: [{
+            label: 'Günlük Abonelik Sayısı',
+            data: subscriptionCounts,
+            borderColor: 'rgba(255, 206, 86, 1)',
+            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            borderWidth: 2,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+        // Diğer grafik verilerini buraya ekleyebilirsiniz.
+    });
+</script>

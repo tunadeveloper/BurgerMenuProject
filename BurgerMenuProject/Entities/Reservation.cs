@@ -14,8 +14,8 @@ namespace BurgerMenuProject.Entities
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string PeopeCount { get; set; }
-        public string Time { get; set; }
+        public string PeopleCount { get; set; }
+        public DateTime Time { get; set; }
         public string Message { get; set; }
         public string ReservationStatus { get; set; }
 

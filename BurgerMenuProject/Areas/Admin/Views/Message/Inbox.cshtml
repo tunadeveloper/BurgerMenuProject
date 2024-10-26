@@ -3,6 +3,7 @@
     ViewBag.Title = "Inbox";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
+    string[] colorClasses = { "destek-color", "tesekkur-color", "duyuru-color", "finans-color", "menu-color", "diger-color" };
 }
 
 <div class="col-lg-6 grid-margin stretch-card">
@@ -26,12 +27,18 @@
                         @foreach (var item in Model)
                         {
                             count++;
+                            string colorClass = item.Title == "Destek" ? colorClasses[0]
+                    : item.Title == "Teşekkür" ? colorClasses[1]
+                    : item.Title == "Duyuru" ? colorClasses[2]
+                    : item.Title == "Finans" ? colorClasses[3]
+                    : item.Title == "Menü" ? colorClasses[4]
+                    : colorClasses[5];
                             <tr>
                                 <td>@count</td>
                                 <td>@item.SenderEmail</td>
-                                <td>@item.Title</td>
+                                <td class="@colorClass">@item.Title</td>
                                 <td>@item.SendDate.ToShortDateString()</td>
-                                <td><a href="#" class="btn btn-primary">Mesajı Aç</a></td>
+                                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Content')">Mesajı Aç</a></td>
                             </tr>
                         }
                     </tbody>
@@ -42,3 +49,89 @@
 </div>
 
 @Html.Action("PartialSendBox", "Message", "Admin")
+
+<!--=================================================================================================-->
+<!-- Popup Start -->
+<!--=================================================================================================-->
+<div class="modal fade" id="reservationDetailsModal" tabindex="-1" role="dialog" aria-labelledby="reservationDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationDetailsLabel">Mesaj</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="message-content" id="reservationDetailContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--=================================================================================================-->
+<!-- Script Start -->
+<!--=================================================================================================-->
+<script src="/regal/vendors/jquery/jquery.min.js"></script>
+<script src="/regal/vendors/base/vendor.bundle.base.js"></script>
+
+<script>
+    function showReservationDetails(message) {
+        document.getElementById('reservationDetailContent').innerText = message;
+        $('#reservationDetailsModal').modal('show');
+    }
+</script>
+
+
+
+<!--=================================================================================================-->
+<!-- Style Start -->
+<!--=================================================================================================-->
+<style>
+    .modal-body {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .message-content {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .modal-title {
+        color: #333;
+    }
+
+    .modal-header {
+        border-bottom: 2px solid #007bff;
+    }
+
+    .destek-color {
+        color: blue;
+    }
+
+    .tesekkur-color {
+        color: green;
+    }
+
+    .duyuru-color {
+        color: orange;
+    }
+
+    .finans-color {
+        color: purple;
+    }
+
+    .menu-color {
+        color: brown;
+    }
+
+    .diger-color {
+        color: gray;
+    }
+
+</style>

@@ -1,4 +1,6 @@
-﻿<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+﻿@model BurgerMenuProject.Entities.Reservation
+
+<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -14,57 +16,55 @@
                         <form method="post">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_fname">First Name</label>
+                                    <label for="m_fname">Adınız</label>
                                     <input type="text" name="Name" class="form-control" id="m_fname">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="m_lname">Last Name</label>
+                                    <label for="m_lname">Soyadınız</label>
                                     <input type="text" name="Surname" class="form-control" id="m_lname">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <label for="m_email">Email</label>
+                                    <label for="m_email">E-Posta Adresi</label>
                                     <input type="email" name="Email" class="form-control" id="m_email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_people">How Many People</label>
-                                    <select name="" id="m_people" class="form-control">
-                                        <option value="1">1 People</option>
-                                        <option value="2">2 People</option>
-                                        <option value="3">3 People</option>
+                                    <label for="m_people">Kişi Sayısı</label>
+                                    <select name="PeopleCount" id="m_people" class="form-control">
+                                        <option value="1">1 kişi</option>
+                                        <option value="2">2 kişi</option>
+                                        <option value="3">3 kişi</option>
                                         <option value="4+">4 veya fazlası</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="m_phone">Phone</label>
+                                    <label for="m_phone">Telefon Numarası</label>
                                     <input type="text" name="Phone" class="form-control" id="m_phone">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_date">Date</label>
-                                    <input type="text" name="ReservationDate" class="form-control" id="m_date">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="m_time">Time</label>
-                                    <input type="text" name="Time" class="form-control" id="m_time">
+                                    <label for="reservationDateTime">Tarih ve Saat</label>
+                                    <input type="datetime-local" name="Time" class="form-control" id="reservationDateTime" required
+                                           min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")">
                                 </div>
                             </div>
 
+
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <label for="m_message">Message</label>
+                                    <label for="m_message">Özel İstek</label>
                                     <textarea class="form-control" name="Message" id="m_message" cols="30" rows="7"></textarea>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Reserve Now">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Rezerve Et">
                                 </div>
                             </div>
 
@@ -76,3 +76,14 @@
         </div>
     </div>
 </div>
+<script>document.addEventListener("DOMContentLoaded", function() {
+        // Bugünün tarihini al
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0'); // Aylar 0'dan başlar
+        const dd = String(now.getDate()).padStart(2, '0');
+
+        // Geçerli tarihi YYYY-MM-DDTHH:mm formatında ayarla
+        const today = `${yyyy}-${mm}-${dd}T${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        document.getElementById("reservationDateTime").setAttribute("min", today);
+    });</script>

@@ -40,7 +40,8 @@ namespace BurgerMenuProject.Controllers
 
         public PartialViewResult PartialFooter()
         {
-            return PartialView();
+            var values = context.SocialMedia.ToList();
+            return PartialView(values);
         }
 
         public PartialViewResult PartialGallery()
@@ -86,16 +87,20 @@ namespace BurgerMenuProject.Controllers
             return PartialView();
         }
 
-        [HttpPost]
-        public PartialViewResult PartialReservation(Reservation reservation)
-        {
-            reservation.ReservationStatus = "Onay Bekleniyor";
-            context.Reservations.Add(reservation);
-            context.SaveChanges();
-            return PartialView();
-        }
+		[HttpPost]
+		public PartialViewResult PartialReservation(Reservation reservation)
+		{
+			if (ModelState.IsValid)
+			{
+				reservation.ReservationStatus = "İşlem Bekliyor...";
+				context.Reservations.Add(reservation);
+				context.SaveChanges();
+			}
+			return PartialView(reservation); // Gönderilen verileri görüntülemek için kullanabilirsiniz
+		}
 
-        public PartialViewResult PartialContact()
+
+		public PartialViewResult PartialContact()
         {
             var values = context.Contacts.ToList();
             return PartialView(values);
@@ -111,5 +116,27 @@ namespace BurgerMenuProject.Controllers
             ViewBag.description = context.Contacts.Select(x=> x.Description).FirstOrDefault();
             return PartialView();
         }
+
+        public PartialViewResult PartialFooterAbout()
+        {
+            ViewBag.description = context.Abouts.Select(x=>x.AboutText).FirstOrDefault();
+            return PartialView();
+        }
+
+        public ActionResult PartialSubscription()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+		public ActionResult PartialSubscription(Subscription subscription)
+		{
+            if (ModelState.IsValid)
+            {
+                context.Subscriptions.Add(subscription);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Default");
 		}
+	}
 	}

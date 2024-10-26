@@ -1,0 +1,7 @@
+﻿@model List<BurgerMenuProject.Entities.About>
+<div class="col-md-6 site-animate">
+    <h2 class="site-heading-2">Hakkımızda</h2>
+    <p>@ViewBag.description</p>
+    <label>Kısa süreli fırsatlar için:</label>
+    @Html.Action("PartialSubscription", "Default")
+</div>

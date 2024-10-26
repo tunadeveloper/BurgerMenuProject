@@ -1,0 +1,106 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+
+
+.container {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 400px;
+    position: relative;
+}
+
+.card-container {
+    margin-bottom: 20px;
+}
+
+.card {
+    background: linear-gradient(45deg, blueviolet, deeppink);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: #fff;
+    position: relative;
+    transition: transform 0.5s;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background: linear-gradient(45deg, blueviolet, deeppink);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-back {
+    background: #000;
+    border-radius: 10px;
+    padding: 20px;
+    transform: rotateY(180deg);
+}
+
+.card-number-box, .card-holder-name, .expiration, .cvv-box {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.inputBox {
+    margin-top: 20px;
+}
+
+    .inputBox span {
+        display: block;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .inputBox input, .inputBox select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        transition: border-color 0.3s;
+    }
+
+        .inputBox input:focus, .inputBox select:focus {
+            border-color: blueviolet;
+        }
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(45deg, blueviolet, deeppink);
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+    .submit-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+.stripe {
+    background: #000;
+    width: 100%;
+    height: 10px;
+    margin: 10px 0;
+}

@@ -24,7 +24,7 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
             var reservation = context.Reservations.Find(id);
             if (reservation != null)
             {
-                reservation.ReservationStatus = "İptal Edildi";
+                reservation.ReservationStatus = "Reddedildi";
                 context.SaveChanges();
                
             }

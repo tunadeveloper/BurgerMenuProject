@@ -1,0 +1,34 @@
+﻿@model BurgerMenuProject.Entities.About
+@{
+    ViewBag.Title = "UpdateAbout";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Bilgi Güncelle</h4>
+            <form method="post">
+                @Html.HiddenFor(x => x.Id)
+                <label>Karşılama Mesajı</label>
+                @Html.TextBoxFor(x => x.WelcomeText, new { @class = "form-control" })
+                <br />
+
+                <label>Hakkımızda Yazısı</label>
+                @Html.TextAreaFor(x => x.AboutText,4,0, new { @class = "form-control" })
+                <br />
+
+                <label>Karşılama Görsel URL</label>
+                @Html.TextBoxFor(x => x.WelcomeImage, new { @class = "form-control" })
+                <br />
+
+                <label>Hakkımızda Görsel URL</label>
+                @Html.TextBoxFor(x => x.AboutImage, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-success">Bilgileri Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+

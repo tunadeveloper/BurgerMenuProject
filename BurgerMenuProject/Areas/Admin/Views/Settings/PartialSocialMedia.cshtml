@@ -1,0 +1,43 @@
+﻿@model List<BurgerMenuProject.Entities.SocialMedia>
+    @{ 
+        int count = 0;
+    }
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">İletişim Bilgileri</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Platform</th>
+                            <th>Icon</th>
+                            <th>Url</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <th>@count</th>
+                                <td>@item.SocialMedianame</td>
+                                <td style="color:yellowgreen">@item.SocialMediaIcon</td>
+                                <td style="color:blue"><a href="@item.SocialMediaUrl" target="_blank">@item.SocialMediaUrl</a></td>
+
+                                <td><a href="/Admin/Settings/DeleteSocialMedia/@item.Id" class="btn btn-danger">Sil</a></td>
+                                <td><a href="/Admin/Settings/UpdateSocialMedia/@item.Id" class="btn btn-success">Güncelle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/Admin/Settings/CreateSocialMedia/" class="btn btn-info">Yeni Hesap Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>

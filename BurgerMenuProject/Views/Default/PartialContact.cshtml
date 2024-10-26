@@ -2,11 +2,11 @@
             <div class="col-md-1"></div>
             <div class="col-md-4 site-animate">
                 @foreach(var item in Model) {
-                <p><img src="~/eatwell-master/images/about_img_1.jpg" alt="" class="img-fluid"></p>
+                <p><img src="@item.Image" alt="" class="img-fluid"></p>
                 <p class="text-black">
-                    Address: <br> @item.Address <br> <br>
-                    Phone: <br> @item.PhoneNumber <br> <br>
-                    Email: <br> <a href="mailto:@item.Email">@item.Email</a>
+                    Adres: <br> @item.Address <br> <br>
+                    Telefon: <br> @item.PhoneNumber <br> <br>
+                    E-Posta: <br> <a href="mailto:@item.Email">@item.Email</a>
                 </p>
                 }
             </div>

@@ -1,0 +1,42 @@
+﻿@model BurgerMenuProject.Entities.Contact
+@{
+    ViewBag.Title = "UpdateContact";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Ürün Girişi</h4>
+            <form method="post">
+                @Html.HiddenFor(x => x.Id)
+                <label>Ürün Adı</label>
+                @Html.TextAreaFor(x => x.Description, 2, 0, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Fiyatı</label>
+                @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Görsel URL</label>
+                @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Görsel URL</label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Görsel URL</label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                <br />
+
+                <label>Ürün Görsel URL</label>
+                @Html.TextBoxFor(x => x.MapUrl, new { @class = "form-control" })
+                <br />
+
+                <button class="btn btn-success">Ürünü Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+

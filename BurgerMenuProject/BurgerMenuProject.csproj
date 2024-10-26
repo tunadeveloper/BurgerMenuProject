@@ -128,14 +128,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLayoutController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
     <Compile Include="Areas\Admin\Controllers\CreditCardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReservationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubscriptionController.cs" />
     <Compile Include="Context\BurgerMenuContext.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
@@ -146,12 +151,14 @@
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\CreditCard.cs" />
     <Compile Include="Entities\DealOfTheDay.cs" />
     <Compile Include="Entities\Gallery.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\SocialMedia.cs" />
+    <Compile Include="Entities\Subscription.cs" />
     <Compile Include="Entities\Testimonial.cs" />
     <Compile Include="Entities\UserMessage.cs" />
     <Compile Include="Global.asax.cs">
@@ -217,6 +224,34 @@
     <Compile Include="Migrations\202410242019421_mig14.Designer.cs">
       <DependentUpon>202410242019421_mig14.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410242051312_mig15.cs" />
+    <Compile Include="Migrations\202410242051312_mig15.Designer.cs">
+      <DependentUpon>202410242051312_mig15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410250705202_mig16.cs" />
+    <Compile Include="Migrations\202410250705202_mig16.Designer.cs">
+      <DependentUpon>202410250705202_mig16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410250710254_mig17.cs" />
+    <Compile Include="Migrations\202410250710254_mig17.Designer.cs">
+      <DependentUpon>202410250710254_mig17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410250821341_mig20.cs" />
+    <Compile Include="Migrations\202410250821341_mig20.Designer.cs">
+      <DependentUpon>202410250821341_mig20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410260917448_a1.cs" />
+    <Compile Include="Migrations\202410260917448_a1.Designer.cs">
+      <DependentUpon>202410260917448_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410260947276_a2.cs" />
+    <Compile Include="Migrations\202410260947276_a2.Designer.cs">
+      <DependentUpon>202410260947276_a2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410260947587_a21.cs" />
+    <Compile Include="Migrations\202410260947587_a21.Designer.cs">
+      <DependentUpon>202410260947587_a21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -240,6 +275,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="eatwell-master\.gitattributes" />
     <Content Include="eatwell-master\css\ajax-loader.gif" />
     <Content Include="eatwell-master\css\animate.css" />
@@ -1742,6 +1778,26 @@
     <Content Include="Areas\Admin\Views\Reservation\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Message\PartialSendBox.cshtml" />
     <Content Include="Areas\Admin\Views\CreditCard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\UpdateAbout.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\CategoryProducts.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\UpdateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\PartialGallery.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\PartialContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\PartialSocialMedia.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\PartialAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscription\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\UpdateContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\CreateSocialMedia.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\UpdateSocialMedia.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\UpdateImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\CreateImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\UpdateAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\CreateAdmin.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1785,6 +1841,8 @@
     <Content Include="Views\Default\UserMessage.cshtml" />
     <Content Include="Views\Default\PartialMap.cshtml" />
     <Content Include="Views\Default\PartialContactHead.cshtml" />
+    <Content Include="Views\Default\PartialFooterAbout.cshtml" />
+    <Content Include="Views\Default\PartialSubscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1868,6 +1926,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410242019421_mig14.resx">
       <DependentUpon>202410242019421_mig14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410242051312_mig15.resx">
+      <DependentUpon>202410242051312_mig15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410250705202_mig16.resx">
+      <DependentUpon>202410250705202_mig16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410250710254_mig17.resx">
+      <DependentUpon>202410250710254_mig17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410250821341_mig20.resx">
+      <DependentUpon>202410250821341_mig20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410260917448_a1.resx">
+      <DependentUpon>202410260917448_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410260947276_a2.resx">
+      <DependentUpon>202410260947276_a2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410260947587_a21.resx">
+      <DependentUpon>202410260947587_a21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
