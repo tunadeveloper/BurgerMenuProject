@@ -7,7 +7,8 @@ using BurgerMenuProject.Entities;
 using BurgerMenuProject.Context;
 namespace BurgerMenuProject.Controllers
 {
-    public class RegisterController : Controller
+	[AllowAnonymous]
+	public class RegisterController : Controller
     {
         // GET: Register
         BurgerMenuContext context= new BurgerMenuContext();

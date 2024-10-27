@@ -9,7 +9,8 @@ using System.Web.Security;
 
 namespace BurgerMenuProject.Controllers
 {
-    public class LoginController : Controller
+	[AllowAnonymous]
+	public class LoginController : Controller
     {
         BurgerMenuContext context = new BurgerMenuContext();
 
@@ -28,12 +29,19 @@ namespace BurgerMenuProject.Controllers
             {
                 FormsAuthentication.SetAuthCookie(values.Username, false);
                 Session["x"] = values.Username.ToString();
-                return RedirectToAction("ProductList", "Product", new { area = "Admin" });
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
             }
             else
             {
                 return View();
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

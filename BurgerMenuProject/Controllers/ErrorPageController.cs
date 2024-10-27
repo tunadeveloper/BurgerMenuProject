@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace BurgerMenuProject.Controllers
 {
-    public class ErrorPageController : Controller
+	[AllowAnonymous]
+	public class ErrorPageController : Controller
     {
         // GET: ErrorPage
         public ActionResult Page404()

@@ -8,6 +8,7 @@ using BurgerMenuProject.Entities;
 using Microsoft.Win32;
 namespace BurgerMenuProject.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         // GET: Default

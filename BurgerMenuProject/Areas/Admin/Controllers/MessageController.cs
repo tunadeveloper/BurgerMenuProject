@@ -9,7 +9,6 @@ using BurgerMenuProject.Entities;
 
 namespace BurgerMenuProject.Areas.Admin.Controllers
 {
-	[Authorize]
 	public class MessageController : Controller
 	{
 		// GET: Admin/Message

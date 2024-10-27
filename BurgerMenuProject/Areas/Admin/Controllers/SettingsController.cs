@@ -157,6 +157,7 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 		{
 			var value =context.Admins.Find(id);
 			context.Admins.Remove(value);
+			context.SaveChanges();
 			return RedirectToAction("Index", "Settings");
 		}
 

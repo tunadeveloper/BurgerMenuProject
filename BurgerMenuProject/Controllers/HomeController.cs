@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace BurgerMenuProject.Controllers
 {
-    public class HomeController : Controller
+	[AllowAnonymous]
+	public class HomeController : Controller
     {
         public ActionResult Index()
         {
