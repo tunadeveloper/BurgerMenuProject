@@ -12,27 +12,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <small>Vazgeç </small><span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="mb-4">Bir Masa Ayırın</h1>
-                        <form method="post" action="@Url.Action("PartialReservation", "Default")">
+                        <h1 class="mb-4">Rezervasyon Ekle</h1>
+                        <form method="post" action="@Url.Action("AdminPartialReservationAdd", "AdminLayout")">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_fname">Adınız</label>
+                                    <label for="m_fname">Ad</label>
                                     <input type="text" name="Name" class="form-control" id="m_fname">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="m_lname">Soyadınız</label>
+                                    <label for="m_lname">Soyad</label>
                                     <input type="text" name="Surname" class="form-control" id="m_lname">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <label for="m_email">Email Adresiniz</label>
+                                    <label for="m_email">E-Posta Adresi</label>
                                     <input type="email" name="Email" class="form-control" id="m_email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_people">Kaç Kişisiniz</label>
+                                    <label for="m_people">Kişi Sayısı</label>
                                     <select name="PeopleCount" id="m_people" class="form-control">
                                         <option value="1">1 Kişi</option>
                                         <option value="2">2 Kişi</option>
@@ -41,32 +41,34 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="m_phone">Telefon</label>
+                                    <label for="m_phone">Telefon Numarası</label>
                                     <input type="text" name="Phone" class="form-control" id="m_phone">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="m_date">Tarih</label>
-                                    <input type="text" name="ReservationDate" class="form-control" id="m_date">
+                                    <label for="reservation_date">Tarih</label>
+                                    <input type="date" name="ReservationDate" class="form-control" id="reservation_date">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="m_time">Saat</label>
-                                    <input type="text" name="Time" class="form-control" id="m_time">
+                                    <label for="reservation_time">Saat</label>
+                                    <input type="time" name="ReservationTime" class="form-control" id="reservation_time">
                                 </div>
                             </div>
 
+
+
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <label for="m_message">Mesajınız</label>
+                                    <label for="m_message">Mesajı</label>
                                     <textarea class="form-control" name="Message" id="m_message" cols="30" rows="7"></textarea>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Rezervasyon Yap">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Rezervasyonu Ekle">
                                 </div>
                             </div>
 
@@ -82,17 +84,15 @@
 <script>
     $(document).ready(function () {
         $('#reservationModal form').on('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: $(this).attr('action'), // Get action URL
-                data: $(this).serialize(), // Serialize form data
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
                 success: function (result) {
-                    // Handle success response (e.g., show success message, close modal)
                     $('#reservationModal').modal('hide');
                 },
                 error: function (xhr, status, error) {
-                    // Handle error response (e.g., show error message)
                 }
             });
         });

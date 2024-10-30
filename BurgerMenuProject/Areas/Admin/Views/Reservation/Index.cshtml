@@ -1,4 +1,4 @@
-﻿@model List<BurgerMenuProject.Entities.Reservation>
+﻿@model PagedList.IPagedList<BurgerMenuProject.Entities.Reservation>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -50,6 +50,37 @@
     </div>
 </div>
 
+<div class="row bt mt-4 ">
+    <div class="col-sm-12 text-center">
+        <ul class="pagination pagination-lg justify-content-center">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", "Reservation", new { page = ViewBag.CurrentPage - 1 })" aria-label="Önceki">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", "Reservation", new { page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", "Reservation", new { page = ViewBag.CurrentPage + 1 })" aria-label="Sonraki">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
 
 <!--=================================================================================================-->
 <!-- Popup Start -->
@@ -77,8 +108,8 @@
 <!--=================================================================================================-->
 <!-- Script Start -->
 <!--=================================================================================================-->
-<script src="/regal/vendors/jquery/jquery.min.js"></script> 
-<script src="/regal/vendors/base/vendor.bundle.base.js"></script> 
+<script src="/regal/vendors/jquery/jquery.min.js"></script>
+<script src="/regal/vendors/base/vendor.bundle.base.js"></script>
 
 <script>
     function showReservationDetails(message, email) {
@@ -94,6 +125,19 @@
 <!-- Style Start -->
 <!--=================================================================================================-->
 <style>
+    .pagination .page-item.active .page-link {
+        background-color: #ec37fc; /* Pembe rengi arka plana uygula */
+        border-color: #ec37fc;
+        color: white;
+    }
+
+    .pagination .page-link {
+        color: black; /* Diğer sayfa numaraları için standart mavi rengi */
+    }
+
+        .pagination .page-link:hover {
+            color: #ec37fc; /* Hover'da pembe renk */
+        }
     .modal-body {
         padding: 20px;
         background-color: #f9f9f9;

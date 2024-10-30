@@ -1,0 +1,37 @@
+﻿@model List<BurgerMenuProject.Entities.Reservation>
+@{ 
+    int count = 0;
+}
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">İşlem Bekleyen Son 5 Rezervasyon</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>İsim Soyisim</th>
+                            <th>Kişi Sayısı</th>
+                            <th>Zaman</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@(item.Name + " " + item.Surname)</td>
+                                <td>@item.PeopleCount</td>
+                                <td>@item.Time.ToString("dd.MM HH:mm")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

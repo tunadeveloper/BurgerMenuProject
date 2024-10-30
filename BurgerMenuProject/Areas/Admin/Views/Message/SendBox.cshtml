@@ -1,6 +1,6 @@
-﻿@model List<BurgerMenuProject.Entities.Message>
+﻿@model PagedList.IPagedList<BurgerMenuProject.Entities.Message>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SendBox";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
     string[] colorClasses = { "destek-color", "tesekkur-color", "duyuru-color", "finans-color", "menu-color", "diger-color" };
@@ -10,7 +10,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Son Gelen 5 Mesaj</h4>
+            <h4 class="card-title">Giden Mesajlar Sayfası</h4>
             <p class="card-description">
             </p>
             <div class="table-responsive">
@@ -18,7 +18,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Gönderen</th>
+                            <th>Alıcı</th>
                             <th>Konu</th>
                             <th>Tarih</th>
                             <th>Mesajı Aç</th>
@@ -29,43 +29,74 @@
                         {
                             count++;
                             string colorClass = item.Title == "Destek" ? colorClasses[0]
-                    : item.Title == "Teşekkür" ? colorClasses[1]
-                    : item.Title == "Duyuru" ? colorClasses[2]
-                    : item.Title == "Finans" ? colorClasses[3]
-                    : item.Title == "Menü" ? colorClasses[4]
-                    : colorClasses[5];
-                    <tr>
-                        <td>@count</td>
-                        <td>@item.SenderEmail</td>
-                        <td class="@colorClass">@item.Title</td>
-                        <td>@item.SendDate.ToShortDateString()</td>
-                        <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Content')">Mesajı Aç</a></td>
-                    </tr>
-                }
+: item.Title == "Teşekkür" ? colorClasses[1]
+: item.Title == "Duyuru" ? colorClasses[2]
+: item.Title == "Finans" ? colorClasses[3]
+: item.Title == "Menü" ? colorClasses[4]
+: colorClasses[5];
+            <tr>
+                <td>@count</td>
+                <td>@item.ReceiverEmail</td>
+                <td class="@colorClass">@item.Title</td>
+                <td>@item.SendDate.ToShortDateString()</td>
+                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showMessageDetails('@item.Content')">Mesajı Aç</a></td>
+            </tr>
+        }
                     </tbody>
                 </table>
+                <a href="/Admin/Message/NewMessage/" class="btn btn-info">Yeni Mesaj Gönder</a>
             </div>
         </div>
     </div>
 </div>
 
-@Html.Action("DashboardRezervation", "Dashboard")
-@Html.Action("DashboardSubscription", "Dashboard")
+
+<div class="row bt mt-4">
+    <div class="col-sm-12 text-center">
+        <ul class="pagination pagination-lg justify-content-center">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("SendBox", "Message", new { page = ViewBag.CurrentPage - 1 })" aria-label="Önceki">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("SendBox", "Message", new { page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("SendBox", "Message", new { page = ViewBag.CurrentPage + 1 })" aria-label="Sonraki">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
 
 <!--=================================================================================================-->
 <!-- Popup Start -->
 <!--=================================================================================================-->
-<div class="modal fade" id="reservationDetailsModal" tabindex="-1" role="dialog" aria-labelledby="reservationDetailsLabel" aria-hidden="true">
+<div class="modal fade" id="messageDetailsModal" tabindex="-1" role="dialog" aria-labelledby="messageDetailsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="reservationDetailsLabel">Mesaj</h5>
+                <h5 class="modal-title" id="messageDetailsLabel">Mesaj</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="message-content" id="reservationDetailContent"></div>
+                <div class="message-content" id="messageDetailContent"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -81,9 +112,9 @@
 <script src="/regal/vendors/base/vendor.bundle.base.js"></script>
 
 <script>
-    function showReservationDetails(message) {
-        document.getElementById('reservationDetailContent').innerText = message;
-        $('#reservationDetailsModal').modal('show');
+    function showMessageDetails(message) {
+        document.getElementById('messageDetailContent').innerText = message;
+        $('#messageDetailsModal').modal('show');
     }
 </script>
 
@@ -93,6 +124,21 @@
 <!-- Style Start -->
 <!--=================================================================================================-->
 <style>
+
+    .pagination .page-item.active .page-link {
+        background-color: #ec37fc;
+        border-color: #ec37fc;
+        color: white;
+    }
+
+    .pagination .page-link {
+        color: black;
+    }
+
+        .pagination .page-link:hover {
+            color: #ec37fc;
+        }
+
     .modal-body {
         padding: 20px;
         background-color: #f9f9f9;

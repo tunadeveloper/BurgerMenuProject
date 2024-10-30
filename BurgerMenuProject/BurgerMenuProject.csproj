@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -252,6 +258,10 @@
     <Compile Include="Migrations\202410260947587_a21.Designer.cs">
       <DependentUpon>202410260947587_a21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410300733479_s1.cs" />
+    <Compile Include="Migrations\202410300733479_s1.Designer.cs">
+      <DependentUpon>202410300733479_s1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -275,6 +285,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Credit-card-form-ui-main\img\aprox.png" />
+    <Content Include="Content\Credit-card-form-ui-main\img\chip.png" />
+    <Content Include="Content\Credit-card-form-ui-main\index.html" />
+    <Content Include="Content\Credit-card-form-ui-main\index.js" />
+    <Content Include="Content\Credit-card-form-ui-main\styles.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\creditcard\css\style.css" />
+    <Content Include="Content\creditcard\image\chip.png" />
+    <Content Include="Content\creditcard\image\visa.png" />
+    <Content Include="Content\creditcard\index.html" />
     <Content Include="Content\style.css" />
     <Content Include="eatwell-master\.gitattributes" />
     <Content Include="eatwell-master\css\ajax-loader.gif" />
@@ -1798,6 +1818,12 @@
     <Content Include="Areas\Admin\Views\Settings\CreateImage.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\UpdateAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\CreateAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\DashboardRezervation.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\DashboardSubscription.cshtml" />
+    <Content Include="Areas\Admin\Views\Message\SendBox.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLayout\AdminPartialReservationAdd.cshtml" />
+    <Content Include="Content\Credit-card-form-ui-main\README.md" />
+    <Content Include="Areas\Admin\Views\CreditCard\CreditCardList.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1948,6 +1974,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410260947587_a21.resx">
       <DependentUpon>202410260947587_a21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410300733479_s1.resx">
+      <DependentUpon>202410300733479_s1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

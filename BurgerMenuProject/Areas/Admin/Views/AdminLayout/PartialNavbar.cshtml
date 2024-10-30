@@ -1,11 +1,14 @@
-﻿<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+﻿
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="../../index.html"><img src="/regal/images/logo.svg" alt="logo" /></a>
         <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="/regal/images/logo-mini.svg" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <div class="nav-item dropdown d-lg-flex d-none">
-            <button type="button" class="btn btn-info font-weight-bold">+ Yeni Rezervasyon</button>
+            <a href="https://colorlib.com/" target="_blank" class="btn btn-info btn-lg site-animate" data-toggle="modal" data-target="#reservationModal">+ Rezervasyon Ekle</a>
         </div>
     </div>
 </nav>
+
+@Html.Action("AdminPartialReservationAdd", "AdminLayout")

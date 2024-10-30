@@ -1,5 +1,6 @@
 ﻿using BurgerMenuProject.Context;
 using BurgerMenuProject.Entities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,16 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
     {
         // GET: Admin/Reservation
         BurgerMenuContext context = new BurgerMenuContext();
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var values = context.Reservations.OrderByDescending(x=>x.ReservationId).ToList();
-            return View(values);
+            int pagesize = 7;
+            var values = context.Reservations
+                .OrderByDescending(x=>x.ReservationId)
+				.ToList()
+				.ToPagedList(page, pagesize);
+			ViewBag.TotalPages = values.PageCount;
+			ViewBag.CurrentPage = page;
+			return View(values);
             
         }
 

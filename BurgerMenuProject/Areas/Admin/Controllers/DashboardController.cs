@@ -14,18 +14,22 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 		public ActionResult Index()
 		{
 			var userName = Session["x"];
-			var email = context.Admins.Where(x => x.Username == userName).Select(y => y.Email).FirstOrDefault(); 
-			ViewBag.Inbox = context.Messages.Where(x=>x.ReceiverEmail == email).Count();
-			ViewBag.SendBox = context.Messages.Where(x => x.SenderEmail == email).Count();
-
-			return View();
+			var email = context.Admins.Where(x => x.Username == userName).Select(y => y.Email).FirstOrDefault();
+			var values = context.Messages.Where(x=>x.ReceiverEmail == email).OrderByDescending(x=>x.MessageId).Take(5).ToList();
+			return View(values);
 		}
 
+		public ActionResult DashboardRezervation()
+		{
+			var values = context.Reservations.Where(x => x.ReservationStatus == "İşlem Bekliyor...").OrderByDescending(x=>x.ReservationId).Take(5).ToList();
+			return View(values);
+		}
+
+		public ActionResult DashboardSubscription()
+		{
+			var values = context.Subscriptions.OrderByDescending(x=>x.Id).Take(5).ToList();
+			return View(values);
+		}
 
 	}
-
-
-
-
-
 }

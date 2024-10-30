@@ -4,38 +4,23 @@
     @foreach (var item in Model)
     {
         <li class="nav-item site-animate">
-            <!-- CategoryId'yi butonun data-category-id özelliğine ekliyoruz -->
-            <a class="nav-link" data-category-id="@item.CategoryId" href="#" role="tab" aria-selected="true">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" aria-controls="pills-breakfast" aria-selected="true" onclick="showCategory(@item.CategoryId, this)">
                 @item.CategoryName
             </a>
         </li>
     }
 </ul>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // Kategori butonlarına tıklama işlemini takip et
-        $('.nav-link').click(function(e) {
-            e.preventDefault();  // Sayfanın yeniden yüklenmesini engeller
-
-            var categoryId = $(this).data('category-id'); // Tıklanan butonun CategoryId'sini al
-
-            // Ajax ile PartialMenu action'ına CategoryId'yi gönder
-            $.ajax({
-                url: '@Url.Action("PartialMenu", "Default")',
-                type: 'GET',
-                data: { categoryId: categoryId },
-                success: function(result) {
-                    // Dönen sonucu menu-container div'ine ekle
-                    $('#menu-container').html(result);
-                },
-                error: function(xhr, status, error) {
-                    console.log("Error: " + error);
-                    console.log("Status: " + status);
-                    console.dir(xhr);
-                }
-            });
-        });
+    function showCategory(categoryId, element) {
+        $('.category-products').hide();
+        $('.category-products[data-category-id="' + categoryId + '"]').show();
+        $('.nav-link').removeClass('active');
+        $(element).addClass('active');
+    }
+    $(document).ready(function () {
+        $('.category-products').hide();
+        $('.category-products[data-category-id="1"]').show();
     });
 </script>
-

@@ -1,4 +1,4 @@
-﻿@model List<BurgerMenuProject.Entities.Message>
+﻿@model PagedList.IPagedList<BurgerMenuProject.Entities.Message>
 @{
     int count = 0;
     string[] colorClasses = { "destek-color", "tesekkur-color", "duyuru-color", "finans-color", "menu-color", "diger-color" };
@@ -26,23 +26,69 @@
                         {
                             count++;
                             string colorClass = item.Title == "Destek" ? colorClasses[0]
-            : item.Title == "Teşekkür" ? colorClasses[1]
-            : item.Title == "Duyuru" ? colorClasses[2]
-            : item.Title == "Finans" ? colorClasses[3]
-            : item.Title == "Menü" ? colorClasses[4]
-            : colorClasses[5];
-                            <tr>
-                                <td>@count</td>
-                                <td>@item.ReceiverEmail</td>
-                                <td class="@colorClass">@item.Title</td>
-                                <td>@item.SendDate.ToShortDateString()</td>
-                                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Content')">Mesajı Aç</a></td>
-                            </tr>
-                        }
+: item.Title == "Teşekkür" ? colorClasses[1]
+: item.Title == "Duyuru" ? colorClasses[2]
+: item.Title == "Finans" ? colorClasses[3]
+: item.Title == "Menü" ? colorClasses[4]
+: colorClasses[5];
+            <tr>
+                <td>@count</td>
+                <td>@item.ReceiverEmail</td>
+                <td class="@colorClass">@item.Title</td>
+                <td>@item.SendDate.ToShortDateString()</td>
+                <td><a href="javascript:void(0)" class="btn btn-dark" onclick="showReservationDetails('@item.Content')">Mesajı Aç</a></td>
+            </tr>
+        }
                     </tbody>
                 </table>
                 <a href="/Admin/Message/NewMessage/" class="btn btn-info">Yeni Mesaj Gönder</a>
             </div>
         </div>
+    </div>
+</div>
+<style>
+    .pagination .page-item.active .page-link {
+        background-color: #ec37fc; /* Pembe rengi arka plana uygula */
+        border-color: #ec37fc;
+        color: white;
+    }
+
+    .pagination .page-link {
+        color: black; /* Diğer sayfa numaraları için standart mavi rengi */
+    }
+
+        .pagination .page-link:hover {
+            color: #ec37fc; /* Hover'da pembe renk */
+        }
+</style>
+
+<div class="row bt mt-4">
+    <div class="col-sm-12 text-center">
+        <ul class="pagination pagination-lg justify-content-center">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Inbox", "Message", new { page = ViewBag.CurrentPage - 1 })" aria-label="Önceki">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Inbox", "Message", new { page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Inbox", "Message", new { page = ViewBag.CurrentPage + 1 })" aria-label="Sonraki">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
     </div>
 </div>

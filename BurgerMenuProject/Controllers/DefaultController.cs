@@ -51,13 +51,11 @@ namespace BurgerMenuProject.Controllers
             return PartialView(values);
         }
 
-		public PartialViewResult PartialMenu(int categoryId)
+		public PartialViewResult PartialMenu()
 		{
-			var values = context.Products.Where(x => x.CategoryId == categoryId).ToList();
-			return PartialView(values);
+			var products = context.Products.ToList();
+			return PartialView("PartialMenu", products);
 		}
-
-
 
 		public PartialViewResult PartialNavbar()
         {
@@ -72,9 +70,9 @@ namespace BurgerMenuProject.Controllers
 
         public PartialViewResult PartialCategory()
         {
-            var value = context.Categories.Take(6).ToList();
-            return PartialView(value);   
-        }
+			var values = context.Categories.Take(6).ToList();
+			return PartialView("PartialCategory", values);
+		}
 
         public PartialViewResult TodaysOffer()
         {
@@ -91,14 +89,13 @@ namespace BurgerMenuProject.Controllers
 		[HttpPost]
 		public PartialViewResult PartialReservation(Reservation reservation)
 		{
-			if (ModelState.IsValid)
-			{
+			
 				reservation.ReservationStatus = "İşlem Bekliyor...";
+				reservation.Time = DateTime.Now;
 				context.Reservations.Add(reservation);
 				context.SaveChanges();
+				return PartialView();
 			}
-			return PartialView(reservation); // Gönderilen verileri görüntülemek için kullanabilirsiniz
-		}
 
 
 		public PartialViewResult PartialContact()

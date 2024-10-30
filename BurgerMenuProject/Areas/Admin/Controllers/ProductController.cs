@@ -6,18 +6,25 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.UI;
+using PagedList;
 namespace BurgerMenuProject.Areas.Admin.Controllers
 {
    
     public class ProductController : Controller
     {
         BurgerMenuContext context = new BurgerMenuContext();
-        [Authorize]
-        public ActionResult ProductList()
+       
+        public ActionResult ProductList(int page = 1)
         {
-            var values = context.Products.ToList();
-            return View(values);
+			int pageSize = 7;
+			var values = context.Products
+				.ToList()
+				.ToPagedList(page, pageSize);
+
+			ViewBag.TotalPages = values.PageCount;
+			ViewBag.CurrentPage = page;
+			return View(values);
         }
 
         [HttpGet]

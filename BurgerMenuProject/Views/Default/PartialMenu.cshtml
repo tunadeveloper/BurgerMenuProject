@@ -1,40 +1,68 @@
 ﻿@model List<BurgerMenuProject.Entities.Product>
+@{
+    Layout = null; int count = 0; 
+}
 
-<div id="menu-container">
-    <section class="site-section" id="section-menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5 site-animate">
-                    <h2 class="display-4">Lezzet Fetivali</h2>
-                    <div class="row justify-content-center">
-                        <div class="col-md-7">
-                            <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
+<section class="site-section" id="section-menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mb-5 site-animate">
+                <h2 class="display-4">Lezzetli Menümüz</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+                        <p class="lead">Birbirinden eşsiz Türk ve Dünya Mutfağı lezzetleri alanında en başarılı aşçılarımızla sizleri bekliyor.</p>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-12 text-center">
+                @Html.Action("PartialCategory", "Default")
+                <div class="tab-content text-left">
+                    <div class="tab-pane fade show active" id="pills-tab" role="tabpanel" aria-labelledby="pills-tab">
+                        <div class="container">
+                            <div class="row justify-content-center" id="menu-container">
 
-                <div class="col-md-12 text-center">
-                    <div class="tab-content text-left">
-                        <div class="tab-pane fade show active" id="pills-breakfast" role="tabpanel" aria-labelledby="pills-breakfast-tab">
-                            <div class="row">
                                 @foreach (var item in Model)
                                 {
-                                    <div class="col-md-6 site-animate">
-                                        <div class="media menu-item">
-                                            <img class="mr-3" src="@item.ImageUrl" class="img-fluid" alt="@item.ProductName">
-                                            <div class="media-body">
-                                                <h5 class="mt-0">@item.ProductName</h5>
-                                                <p>@item.Description</p>
-                                                <h6 class="text-primary menu-price">@item.Price ₺</h6>
+                                    count++;
+                                    if (count % 2 == 1)
+                                    {
+                                        <div class="category-products col-md-5 site-animate mb-4" data-category-id="@item.CategoryId">
+                                            <div class="media menu-item">
+                                                <img class="mr-3 img-fluid" src="@item.ImageUrl" alt="Ürün resmi">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0">@item.ProductName</h5>
+                                                    <p>@item.Description</p>
+                                                    <h6 class="text-primary menu-price">@item.Price₺</h6>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    }
+
+                                    else
+                                    {
+                                        <div class="category-products col-md-5 site-animate mb-4" data-category-id="@item.CategoryId">
+                                            <div class="media menu-item">
+                                                <img class="mr-3 img-fluid" src="@item.ImageUrl" alt="Ürün resmi">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0">@item.ProductName</h5>
+                                                    <p>@item.Description</p>
+                                                    <h6 class="text-primary menu-price">@item.Price₺</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
                                 }
+
                             </div>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</section>

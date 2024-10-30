@@ -1,5 +1,6 @@
 ﻿using BurgerMenuProject.Context;
 using BurgerMenuProject.Entities;
+using PagedList;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -8,10 +9,16 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 	public class CategoryController : Controller
     {
         BurgerMenuContext context = new BurgerMenuContext();
-        public ActionResult CategoryList()
+        public ActionResult CategoryList(int page = 1)
         {
-            var values = context.Categories.ToList();
-            return View(values);
+            int pagesize = 7;
+            var values = context.Categories
+                .ToList()
+                .ToPagedList(page,pagesize);
+
+			ViewBag.TotalPages = values.PageCount;
+			ViewBag.CurrentPage = page;
+			return View(values);
         }
 
         public ActionResult CreateCategory()

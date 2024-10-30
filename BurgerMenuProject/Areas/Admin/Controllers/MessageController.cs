@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using BurgerMenuProject.Entities;
+using PagedList;
+using System.Drawing.Printing;
+using System.Web.UI;
 
 namespace BurgerMenuProject.Areas.Admin.Controllers
 {
@@ -14,20 +17,36 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 		// GET: Admin/Message
 
 		BurgerMenuContext context = new BurgerMenuContext();
-
-		public ActionResult Inbox()
+		int pagesize = 7;
+		public ActionResult Inbox(int page = 1)
 		{
+			int pagesize = 7;
 			var userName = Session["x"];
 			var email = context.Admins.Where(x => x.Username == userName).Select(y => y.Email).FirstOrDefault();
-			var values = context.Messages.Where(x => x.ReceiverEmail == email).ToList();
+			var values = context.Messages
+				.Where(x => x.ReceiverEmail == email)
+				.OrderByDescending(y => y.MessageId)
+				.ToList()
+				.ToPagedList(page, pagesize);
+
+			ViewBag.TotalPages = values.PageCount;
+			ViewBag.CurrentPage = page;
 			return View(values);
 		}
 
-		public PartialViewResult PartialSendBox()
+		public ActionResult SendBox(int page = 1)
 		{
+			int pagesize = 7;
 			var userName = Session["x"];
 			var email = context.Admins.Where(x => x.Username == userName).Select(y => y.Email).FirstOrDefault();
-			var values = context.Messages.Where(x => x.SenderEmail == email).ToList();
+			var values = context.Messages
+			.Where(x => x.SenderEmail == email)
+			.OrderByDescending(y => y.MessageId)
+			.ToList()
+				.ToPagedList(page, pagesize);
+
+			ViewBag.TotalPages = values.PageCount;
+			ViewBag.CurrentPage = page;
 			return PartialView(values);
 		}
 
@@ -56,7 +75,7 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 			message.SendDate = DateTime.Now;
 			context.Messages.Add(message);
 			context.SaveChanges();
-			return RedirectToAction("Inbox", "Message", new { area = "Admin" });
+			return RedirectToAction("SendBox", "Message", new { area = "Admin" });
 		}
 	}
 }

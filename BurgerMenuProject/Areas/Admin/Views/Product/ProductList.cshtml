@@ -1,4 +1,4 @@
-﻿@model List<BurgerMenuProject.Entities.Product>
+﻿@model PagedList.IPagedList<BurgerMenuProject.Entities.Product>
 @{
     ViewBag.Title = "ProductList";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -35,12 +35,12 @@
                                 {
 
 
-<td><a href="/Admin/Product/DealOfTheDayToFalse/@item.ProductId" class="btn btn-dark">Fırsatı İptal Et</a></td>
-}
-else
-                {
-                            <td><a href="/Admin/Product/DealOfTheDayToTrue/@item.ProductId" class="btn btn-warning">Fırsatı Aktif Et</a></td>
-                }
+                                    <td><a href="/Admin/Product/DealOfTheDayToFalse/@item.ProductId" class="btn btn-dark">Fırsatı İptal Et</a></td>
+                                }
+                                else
+                                {
+                                    <td><a href="/Admin/Product/DealOfTheDayToTrue/@item.ProductId" class="btn btn-warning">Fırsatı Aktif Et</a></td>
+                                }
                                 <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
                                 <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
                             </tr>
@@ -52,4 +52,51 @@ else
             </div>
         </div>
     </div>
-</div>                
+</div>
+
+<style>
+    .pagination .page-item.active .page-link {
+        background-color: #ec37fc; /* Pembe rengi arka plana uygula */
+        border-color: #ec37fc;
+        color: white;
+    }
+
+    .pagination .page-link {
+        color: black; /* Diğer sayfa numaraları için standart mavi rengi */
+    }
+
+        .pagination .page-link:hover {
+            color: #ec37fc; /* Hover'da pembe renk */
+        }
+</style>
+
+<div class="row bt mt-4">
+    <div class="col-sm-12 text-center">
+        <ul class="pagination pagination-lg justify-content-center">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("ProductList", "Product", new { page = ViewBag.CurrentPage - 1 })" aria-label="Önceki">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("ProductList", "Product", new { page = i })">@i</a>
+                </li>
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("ProductList", "Product", new { page = ViewBag.CurrentPage + 1 })" aria-label="Sonraki">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

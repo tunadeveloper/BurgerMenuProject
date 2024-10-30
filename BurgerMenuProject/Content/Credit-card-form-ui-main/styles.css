@@ -1,0 +1,118 @@
+/* Genel ayarlar */
+body {
+    height: 100%;
+    background-color: #ffffff; /* Arka planı beyaza ayarladık */
+    text-align: center; /* Sayfadaki her şeyi yatay ortalamak için */
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 3% auto;
+}
+
+.ui {
+    display: flex;
+    flex-direction: column; /* Kredi kartı üstte, form altta olacak şekilde dikey hizalama */
+    align-items: center;
+    background-color: #ffffff; /* Arka plan beyaz */
+    color: black; /* Yazı rengi siyah */
+}
+
+.container-left, .container-right {
+    width: 50%;
+}
+
+/* Kredi Kartı Stilleri */
+.card {
+    width: 360px;
+    height: 230px;
+    margin: 0 auto;
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(0,140,177,1) 35%, rgba(0,29,125,1) 100%);
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 15px;
+}
+
+.intern {
+    padding: 20px;
+}
+
+.approximation {
+    width: 40px;
+    height: auto;
+    float: right;
+    margin-top: -10px;
+}
+
+.chip {
+    width: 60px;
+    height: auto;
+    position: relative;
+    top: 20px;
+}
+
+/* Kart üzerindeki bilgiler */
+.card-number, .card-holder, .card-infos {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+    .card-number .number-vl, .card-holder .name-vl, .card-infos .expiration-vl, .card-infos .cvv-vl {
+        font-size: 1.2rem;
+    }
+
+.card-holder, .card-infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Form Stilleri */
+form {
+    width: 360px;
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    outline: 0;
+}
+
+/* Input alanları için varsayılan ayarları geri getiriyoruz */
+input[type="text"] {
+    border: 1px solid #ddd; /* Siyah border yerine varsayılan */
+    color: black; /* Yazı rengini varsayılan bırak */
+}
+
+/* Submit butonu stili */
+input[type="submit"] {
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+    input[type="submit"]:hover {
+        background-color: #0097a7;
+    }
+
+/* Kart Bilgisi Etiketleri */
+label {
+    font-size: 0.9rem;
+    color: black;
+}
+
+/* Küçük düzenlemeler */
+.number-container, .name-container, .infos-container {
+    margin-top: 10px;
+}
+
+.expiration-container, .cvv-container {
+    display: inline-block;
+    width: 45%;
+}
