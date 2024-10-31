@@ -7,34 +7,34 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Yeni Ürün Girişi</h4>
+            <h4 class="card-title">İletişim Bilgilerini Güncelle</h4>
+            <br /><br />
             <form method="post">
                 @Html.HiddenFor(x => x.Id)
-                <label>Ürün Adı</label>
-                @Html.TextAreaFor(x => x.Description, 2, 0, new { @class = "form-control" })
-                <br />
 
-                <label>Ürün Fiyatı</label>
+                <label>Fotoğraf</label>
                 @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
                 <br />
 
-                <label>Ürün Görsel URL</label>
-                @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
-                <br />
-
-                <label>Ürün Görsel URL</label>
-                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
-                <br />
-
-                <label>Ürün Görsel URL</label>
+                <label>E-Posta Adresi</label>
                 @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
                 <br />
 
-                <label>Ürün Görsel URL</label>
+                <label>Telefon Numarası</label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                <br />
+
+
+                <label>Adres</label>
+                @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+                <br />
+
+
+                <label>Konum</label>
                 @Html.TextBoxFor(x => x.MapUrl, new { @class = "form-control" })
                 <br />
 
-                <button class="btn btn-success">Ürünü Güncelle</button>
+                <button class="btn btn-success">Bilgileri Güncelle</button>
             </form>
         </div>
     </div>

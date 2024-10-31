@@ -7,25 +7,26 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Yeni admin Girişi</h4>
+            <h4 class="card-title">Yeni Yönetici Ekle</h4>
+            <br /><br />
             <form method="post">
-                <label>AD</label>
+                <label>Adı</label>
                 @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
                 <br />
-                <label>Soyad</label>
+                <label>Soyadı</label>
                 @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
                 <br />
-                <label>Email</label>
+                <label>E-Posta Adresi</label>
                 @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
                 <br />
-                <label>Username</label>
+                <label>Kullanıcı Adı</label>
                 @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
                 <br />
-                <label>Pasasword</label>
+                <label>Şifre</label>
                 @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
                 <br />
 
-                <button class="btn btn-info">Görseli Ekle</button>
+                <button class="btn btn-info">Yöneticiyi Ekle</button>
             </form>
         </div>
     </div>

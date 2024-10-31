@@ -158,7 +158,6 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\CreditCard.cs" />
-    <Compile Include="Entities\DealOfTheDay.cs" />
     <Compile Include="Entities\Gallery.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -262,6 +261,18 @@
     <Compile Include="Migrations\202410300733479_s1.Designer.cs">
       <DependentUpon>202410300733479_s1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410310723410_end1.cs" />
+    <Compile Include="Migrations\202410310723410_end1.Designer.cs">
+      <DependentUpon>202410310723410_end1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410311051052_end2.cs" />
+    <Compile Include="Migrations\202410311051052_end2.Designer.cs">
+      <DependentUpon>202410311051052_end2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410311328536_end3.cs" />
+    <Compile Include="Migrations\202410311328536_end3.Designer.cs">
+      <DependentUpon>202410311328536_end3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -269,6 +280,7 @@
     <Content Include="colorlib-error-404-6\css\style.css" />
     <Content Include="colorlib-error-404-6\index.html" />
     <Content Include="colorlib-error-404-6\readme.txt" />
+    <Content Include="Content\background.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -285,11 +297,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\Credit-card-form-ui-main\img\aprox.png" />
-    <Content Include="Content\Credit-card-form-ui-main\img\chip.png" />
-    <Content Include="Content\Credit-card-form-ui-main\index.html" />
-    <Content Include="Content\Credit-card-form-ui-main\index.js" />
-    <Content Include="Content\Credit-card-form-ui-main\styles.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\creditcard\css\style.css" />
     <Content Include="Content\creditcard\image\chip.png" />
@@ -346,6 +353,7 @@
     <Content Include="regal\images\auth\lockscreen-bg.jpg" />
     <Content Include="regal\images\auth\login-bg.jpg" />
     <Content Include="regal\images\auth\register-bg.jpg" />
+    <Content Include="regal\images\faces\AdminLogo.jpg" />
     <Content Include="regal\images\faces\face1.jpg" />
     <Content Include="regal\images\faces\face13.jpg" />
     <Content Include="regal\images\faces\face2.jpg" />
@@ -1822,7 +1830,6 @@
     <Content Include="Areas\Admin\Views\Dashboard\DashboardSubscription.cshtml" />
     <Content Include="Areas\Admin\Views\Message\SendBox.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLayout\AdminPartialReservationAdd.cshtml" />
-    <Content Include="Content\Credit-card-form-ui-main\README.md" />
     <Content Include="Areas\Admin\Views\CreditCard\CreditCardList.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -1866,14 +1873,12 @@
     <Content Include="Views\Default\PartialContact.cshtml" />
     <Content Include="Views\Default\UserMessage.cshtml" />
     <Content Include="Views\Default\PartialMap.cshtml" />
-    <Content Include="Views\Default\PartialContactHead.cshtml" />
     <Content Include="Views\Default\PartialFooterAbout.cshtml" />
     <Content Include="Views\Default\PartialSubscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\LogInOut\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Models\" />
     <Folder Include="regal\.git\objects\info\" />
@@ -1977,6 +1982,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410300733479_s1.resx">
       <DependentUpon>202410300733479_s1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410310723410_end1.resx">
+      <DependentUpon>202410310723410_end1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410311051052_end2.resx">
+      <DependentUpon>202410311051052_end2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410311328536_end3.resx">
+      <DependentUpon>202410311328536_end3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

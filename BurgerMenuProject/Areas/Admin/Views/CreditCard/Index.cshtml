@@ -95,8 +95,6 @@
                     <input type="text" name="Cvv" maxlength="4" class="cvv-input">
                 </div>
             </div>
-
-            <!-- Gizli input alanı -->
             <input type="hidden" name="expirationDate" id="expirationDateInput">
             <input type="submit" value="KAYDET" class="submit-btn">
         </form>
@@ -105,7 +103,6 @@
 
     @Html.Action("CreditCardList", "CreditCard")
     <script>
-        // Kart bilgilerini güncelleme
         document.querySelector('.card-number-input').oninput = () => {
             document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
         }
@@ -138,7 +135,6 @@
             document.querySelector('.cvv-box').innerText = document.querySelector('.cvv-input').value;
         }
 
-        // Ay ve yılı birleştirip expirationDate gizli inputuna yazdırma
         function updateExpirationDate() {
             const month = document.querySelector('.month-input').value;
             const year = document.querySelector('.year-input').value;

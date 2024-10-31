@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "ProductList";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="col-lg-12 grid-margin stretch-card">
@@ -25,9 +26,9 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-                        {
+                        { count++;
                             <tr>
-                                <td>@item.ProductId</td>
+                                <td>@count</td>
                                 <td><img src="@item.ImageUrl" height="50" width="50" /></td>
                                 <td>@item.ProductName</td>
                                 <td>@item.Category.CategoryName</td>

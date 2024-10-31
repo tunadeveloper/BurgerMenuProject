@@ -13,6 +13,5 @@ namespace BurgerMenuProject.Entities
         public string ReceiverEmail { get; set; }
         public string Content { get; set; }
         public DateTime SendDate { get; set; }
-        public bool IsRead { get; set; }
     }
 }

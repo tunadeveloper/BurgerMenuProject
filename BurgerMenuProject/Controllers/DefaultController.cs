@@ -108,12 +108,6 @@ namespace BurgerMenuProject.Controllers
         ViewBag.mapurl = context.Contacts.Select(x=>x.MapUrl).FirstOrDefault();
         return PartialView();
         }
- 
-        public PartialViewResult PartialContactHead()
-        {
-            ViewBag.description = context.Contacts.Select(x=> x.Description).FirstOrDefault();
-            return PartialView();
-        }
 
         public PartialViewResult PartialFooterAbout()
         {

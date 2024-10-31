@@ -74,7 +74,6 @@ namespace BurgerMenuProject.Areas.Admin.Controllers
 		public ActionResult UpdateContact(Contact contact)
 		{
 			var value = context.Contacts.Find(contact.Id);
-			value.Description = contact.Description;
 			value.Image = contact.Image;
 			value.Address = contact.Address;
 			value.PhoneNumber = contact.PhoneNumber;

@@ -9,33 +9,27 @@
 <style>
    
     canvas {
-        max-width: 100%; /* Genişliği %100 yap */
-        height: 300px; /* Yüksekliği 300px yaparak aynı boyutları elde et */
+        max-width: 100%;
+        height: 300px
     }
 </style>
 
 <div class="container mt-5">
-    <h2 class="text-center">Rezervasyon ve Ürün Grafikleri</h2>
+    <h2 class="text-center">Grafikler</h2>
 
     <div class="row">
-        <!-- İlk Çizgi Grafiği -->
         <div class="col-md-6">
-            <canvas id="reservationChart" height="230"></canvas> <!-- Yüksekliği burada belirledik -->
+            <canvas id="reservationChart" height="230"></canvas>
         </div>
-
-        <!-- İkinci Çizgi Grafiği -->
         <div class="col-md-6">
-            <canvas id="productChart" height="230"></canvas> <!-- Yüksekliği burada belirledik -->
+            <canvas id="productChart" height="230"></canvas>
         </div>
     </div>
 
     <div class="row mt-4">
-        <!-- Üçüncü Grafik (Mesajların Konularına Göre Sayısı) -->
         <div class="col-md-6">
             <canvas id="categoryChart" height="230"></canvas>
         </div>
-
-        <!-- Dördüncü Grafik -->
         <div class="col-md-6">
             <canvas id="subscriptionChart" height="230"></canvas>
         </div>
@@ -44,7 +38,6 @@
 
 <script>
     $(document).ready(function () {
-        // Rezervasyon verisi
         var reservationData = @Html.Raw(ViewBag.ReservationData);
         var reservationLabels = reservationData.map(function (item) {
             return item.Month + '/' + item.Year;
@@ -52,8 +45,6 @@
         var reservationCounts = reservationData.map(function (item) {
             return item.Count;
         });
-
-        // Rezervasyon Grafiği
         var ctxReservation = document.getElementById('reservationChart').getContext('2d');
         new Chart(ctxReservation, {
             type: 'line',
@@ -77,8 +68,6 @@
                 }
             }
         });
-
-        // Ürün verisi
         var productData = @Html.Raw(ViewBag.ProductData);
         var productLabels = productData.map(function (item) {
             return item.CategoryName;
@@ -86,8 +75,6 @@
         var productCounts = productData.map(function (item) {
             return item.Count;
         });
-
-        // Ürün Grafiği
         var ctxProduct = document.getElementById('productChart').getContext('2d');
         new Chart(ctxProduct, {
             type: 'line',
@@ -111,8 +98,6 @@
                 }
             }
         });
-
-        // Mesaj verisi
         var messageData = @Html.Raw(ViewBag.MessageData);
         var messageLabels = messageData.map(function (item) {
             return item.Title;
@@ -120,8 +105,6 @@
         var messageCounts = messageData.map(function (item) {
             return item.Count;
         });
-
-        // Mesaj Grafiği
         var ctxCategory = document.getElementById('categoryChart').getContext('2d');
         new Chart(ctxCategory, {
             type: 'line',
@@ -145,16 +128,14 @@
                 }
             }
         });
-        // Abonelik verisi
 var subscriptionData = @Html.Raw(ViewBag.SubscriptionData);
         var subscriptionLabels = subscriptionData.map(function (item) {
-            return item.Date.split("T")[0].slice(5); // 1. "T" karakterine göre böl, 2. ilk 5 karakteri çıkar (ay-gün)
+            return item.Date.split("T")[0].slice(5);
         });
 var subscriptionCounts = subscriptionData.map(function (item) {
-    return item.Count; // Günlük abonelik sayısı
+    return item.Count;
 });
 
-// Abonelik Grafiği
 var ctxSubscription = document.getElementById('subscriptionChart').getContext('2d');
 new Chart(ctxSubscription, {
     type: 'line',
@@ -178,7 +159,5 @@ new Chart(ctxSubscription, {
         }
     }
 });
-
-        // Diğer grafik verilerini buraya ekleyebilirsiniz.
     });
 </script>
