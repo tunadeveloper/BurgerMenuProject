@@ -1,4 +1,4 @@
-# ✈️ **Burger Menu Projesi**
+# 🍚 **Burger Menu Projesi**
 
 ---
 
