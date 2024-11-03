@@ -97,7 +97,7 @@ Update-Database
 7. ▶️ Projeyi Çalıştırın: Projeyi Visual Studio'nun IIS Express'i kullanarak çalıştırın.
 ---
 
-# 🔑 **Kullanıcı Paneli**
+# 👤 **Kullanıcı Paneli**
 
 ![1](https://github.com/user-attachments/assets/1b0cb6da-9632-4fe3-bd56-6adc3496ac6c)
 ![111](https://github.com/user-attachments/assets/f7a8ad00-6634-4fb4-9aa4-9ac46587a6d7)
@@ -109,7 +109,7 @@ Update-Database
 ![6](https://github.com/user-attachments/assets/47d25f54-0261-47c3-8a7d-a1e043b8840b)
 ![7](https://github.com/user-attachments/assets/b7d32506-d9ca-4cd4-95f0-f5bc4c01c636)
 
-# 🔑 **Admin Paneli**
+# 👨‍🍳 **Admin Paneli**
 
 ![8](https://github.com/user-attachments/assets/b143dcab-bc6b-4521-8f8a-a3dccdc955b7)
 ![1212](https://github.com/user-attachments/assets/5860d453-c0ff-4995-ae89-bd007a45da08)
@@ -132,7 +132,7 @@ Update-Database
 
 ![404](https://github.com/user-attachments/assets/204b2a35-f9ee-4478-a347-185b485a75af)
 
-# 🔑 **Login Paneli**
+# 🔒 **Login Paneli**
 
 ![login](https://github.com/user-attachments/assets/3078192c-f182-4bd3-b97a-2bc532e15384)
 
